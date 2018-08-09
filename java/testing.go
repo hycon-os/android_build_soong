@@ -152,6 +152,11 @@ func GatherRequiredDepsForTest() string {
 			sdk_version: "core_platform",
 		}
 
+		android_app {
+			name: "com.revengeos.platform-res",
+			sdk_version: "core_platform",
+		}
+
 		java_library {
 			name: "android.hidl.base-V1.0-java",
 			srcs: ["a.java"],
