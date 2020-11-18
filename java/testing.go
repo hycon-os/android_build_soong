@@ -153,7 +153,7 @@ func GatherRequiredDepsForTest() string {
 		}
 
 		android_app {
-			name: "com.revengeos.platform-res",
+			name: "com.hycon.platform-res",
 			sdk_version: "core_platform",
 		}
 

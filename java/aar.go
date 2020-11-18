@@ -193,7 +193,7 @@ func (a *aapt) aapt2Flags(ctx android.ModuleContext, sdkContext sdkContext,
 
 	if !hasVersionName {
 		var versionName string
-		if ctx.ModuleName() == "framework-res" || ctx.ModuleName() == "com.revengeos.platform-res" {
+		if ctx.ModuleName() == "framework-res" || ctx.ModuleName() == "com.hycon.platform-res" {
 			// Some builds set AppsDefaultVersionName() to include the build number ("O-123456").  aapt2 copies the
 			// version name of framework-res into app manifests as compileSdkVersionCodename, which confuses things
 			// if it contains the build number.  Use the PlatformVersionName instead.
@@ -218,8 +218,8 @@ func (a *aapt) deps(ctx android.BottomUpMutatorContext, sdkDep sdkDep) {
 	if sdkDep.frameworkResModule != "" {
 		ctx.AddVariationDependencies(nil, frameworkResTag, sdkDep.frameworkResModule)
 	}
-	if sdkDep.revengeosResModule != "" {
-		ctx.AddDependency(ctx.Module(), revengeosResTag, sdkDep.revengeosResModule)
+	if sdkDep.hyconResModule != "" {
+		ctx.AddDependency(ctx.Module(), hyconResTag, sdkDep.hyconResModule)
 	}
 }
 
@@ -391,7 +391,7 @@ func aaptLibs(ctx android.ModuleContext, sdkContext sdkContext) (transitiveStati
 				sdkLibraries = append(sdkLibraries, component.OptionalImplicitSdkLibrary()...)
 			}
 
-		case frameworkResTag, revengeosResTag:
+		case frameworkResTag, hyconResTag:
 			if exportPackage != nil {
 				sharedLibs = append(sharedLibs, exportPackage)
 			}
@@ -633,8 +633,8 @@ func (a *AARImport) DepsMutator(ctx android.BottomUpMutatorContext) {
 		if sdkDep.useModule && sdkDep.frameworkResModule != "" {
 			ctx.AddVariationDependencies(nil, frameworkResTag, sdkDep.frameworkResModule)
 		}
-		if sdkDep.useModule && sdkDep.revengeosResModule != "" {
-			ctx.AddDependency(ctx.Module(), revengeosResTag, sdkDep.revengeosResModule)
+		if sdkDep.useModule && sdkDep.hyconResModule != "" {
+			ctx.AddDependency(ctx.Module(), hyconResTag, sdkDep.hyconResModule)
 		}
 	}
 
